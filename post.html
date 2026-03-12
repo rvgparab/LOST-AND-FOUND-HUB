@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Post Item - Lost & Found</title>
+
+<style>
+
+/* PAGE */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#333;
+line-height:1.6;
+}
+
+.main-container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* ===== HEADER ===== */
+
+.main-header{
+background:#1e3a5f;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.header-right a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.header-right a:hover{
+color:#2bb3c0;
+}
+
+/* ===== QUICK ACCESS ===== */
+
+.quick-access{
+background:white;
+padding:15px;
+text-align:center;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.quick-access nav{
+margin-top:10px;
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.quick-access nav a{
+text-decoration:none;
+font-weight:bold;
+color:#1e3a5f;
+}
+
+.quick-access nav a:hover{
+color:#2bb3c0;
+}
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+margin:0;
+text-align:center;
+}
+
+/* HEADER */
+
+header{
+background:#82b2ed;
+color:white;
+padding:15px;
+font-size:22px;
+font-weight:bold;
+}
+
+/* POST FORM */
+
+.post-box{
+background:white;
+width:400px;
+margin:30px auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+input,select{
+width:90%;
+padding:10px;
+margin:8px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+padding:10px 18px;
+background:#2bb3c0;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* FEED */
+
+#feed{
+width:420px;
+margin:auto;
+}
+
+.post{
+background:white;
+margin:20px;
+padding:15px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+text-align:left;
+}
+
+.post img{
+width:100%;
+border-radius:8px;
+margin-top:10px;
+}
+
+.actions{
+margin-top:10px;
+}
+
+.comment-box{
+width:95%;
+padding:6px;
+margin-top:5px;
+}
+
+.comment{
+font-size:14px;
+margin:3px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+    
+  <!-- HEADER -->
+
+<header class="main-header">
+
+<div class="logo">
+🔎 Lost&Found
+</div>
+
+<div class="header-right">
+<a href="#" onclick="showMyPosts()">My Posts</a>
+<a href="#">My Account</a>
+<a href="#" onclick="logout()">Logout</a>
+</div>
+
+</header>
+
+
+<!-- MAIN CONTAINER (IMPORTANT FOR WIDTH) -->
+
+<div class="main-container">
+
+
+<!-- QUICK ACCESS -->
+
+<section class="quick-access">
+
+<h2>Quick Access</h2>
+
+<nav>
+<a href="home.html">HOME</a>
+<a href="lost.html">LOST ITEMS</a>
+<a href="found.html">FOUND ITEMS</a>
+<a href="post.html">POST ITEM</a>
+<a href="contact.html">CONTACT</a>
+</nav>
+
+</section>
+
+<hr>
+<br>
+
+
+<header>Post Lost / Found Item</header>
+<br>
+
+<div class="post-box">
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="text" id="item" placeholder="Item Name">
+
+<select id="type">
+<option>Lost</option>
+<option>Found</option>
+</select>
+
+<input type="date" id="date">
+
+<input type="time" id="time">
+
+<input type="text" id="location" placeholder="Location">
+
+<input type="file" id="image">
+
+<br><br>
+
+<button onclick="createPost()">Post</button>
+
+</div>
+
+
+<h2>User Posts</h2>
+
+<div id="feed"></div>
+
+
+<script>
+
+/* LOAD SAVED POSTS */
+
+window.onload=function(){
+
+let savedPosts=JSON.parse(localStorage.getItem("posts")) || [];
+
+savedPosts.forEach(p=>{
+displayPost(p);
+});
+
+};
+
+
+/* CREATE POST */
+
+function createPost(){
+
+let username=document.getElementById("username").value;
+let item=document.getElementById("item").value;
+let type=document.getElementById("type").value;
+let date=document.getElementById("date").value;
+let time=document.getElementById("time").value;
+let location=document.getElementById("location").value;
+
+let imageInput=document.getElementById("image");
+
+let reader=new FileReader();
+
+reader.onload=function(){
+
+let postData={
+username,
+item,
+type,
+date,
+time,
+location,
+image:reader.result,
+likes:0,
+comments:[]
+};
+
+let posts=JSON.parse(localStorage.getItem("posts")) || [];
+posts.unshift(postData);
+
+localStorage.setItem("posts",JSON.stringify(posts));
+
+displayPost(postData);
+
+};
+
+if(imageInput.files[0]){
+reader.readAsDataURL(imageInput.files[0]);
+}else{
+reader.onload();
+}
+
+}
+
+
+/* DISPLAY POST */
+
+function displayPost(p){
+
+let post=document.createElement("div");
+post.className="post";
+
+post.innerHTML=`
+
+<b>${p.type} Item</b><br>
+<b>Item:</b> ${p.item}<br>
+<b>User:</b> ${p.username}<br>
+<b>Location:</b> ${p.location}<br>
+<b>Date:</b> ${p.date} ${p.time}
+
+${p.image ? `<img src="${p.image}">` : ""}
+
+<div class="actions">
+
+<button onclick="likePost(this)">❤️ Like</button>
+
+</div>
+
+<div class="comments"></div>
+
+<input class="comment-box" placeholder="Write comment">
+
+<button onclick="addComment(this)">Comment</button>
+
+`;
+
+document.getElementById("feed").prepend(post);
+
+}
+
+
+/* LIKE */
+
+function likePost(btn){
+
+btn.innerText="❤️ Liked";
+
+}
+
+
+/* COMMENT */
+
+function addComment(btn){
+
+let post=btn.parentElement.parentElement;
+
+let input=post.querySelector(".comment-box");
+
+let text=input.value;
+
+if(text==="") return;
+
+let comment=document.createElement("div");
+comment.className="comment";
+comment.innerText=text;
+
+post.querySelector(".comments").appendChild(comment);
+
+input.value="";
+
+}
+
+</script>
+
+</body>
+</html>

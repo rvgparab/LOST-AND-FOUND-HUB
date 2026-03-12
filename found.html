@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Found Items</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+<header class="main-header">
+
+<div class="logo">
+🔎 Lost&Found
+</div>
+
+<div class="header-right">
+<a href="#" onclick="showMyPosts()">My Posts</a>
+<a href="#">My Account</a>
+<a href="#" onclick="logout()">Logout</a>
+</div>
+
+</header>
+
+
+<!-- MAIN CONTAINER (IMPORTANT FOR WIDTH) -->
+
+<div class="main-container">
+
+
+<!-- QUICK ACCESS -->
+
+<section class="quick-access">
+
+<h2>Quick Access</h2>
+
+<nav>
+<a href="home.html">HOME</a>
+<a href="lost.html">LOST ITEMS</a>
+<a href="found.html">FOUND ITEMS</a>
+<a href="post.html">POST ITEM</a>
+<a href="contact.html">CONTACT</a>
+</nav>
+
+</section>
+
+
+<center>
+    <hr>
+    <br>
+<h1>LIST OF FOUND ITEMS</h1>
+<p><i>Items that people have found.</i></p>
+<br>
+</center>
+
+<br>
+
+<center>
+<table border="1" cellpadding="20"  cellspacing="15">
+
+<tr>
+<th>Item</th>
+<th>Location Found</th>
+<th>Date</th>
+<th>Contact</th>
+<th>Photos</th>
+<th>Claim</th>
+</tr>
+
+<tr>
+<td>Watch</td>
+<td>College Gate</td>
+<td>10 March</td>
+<td>9876541230</td>
+<td><img src="https://m.media-amazon.com/images/I/61QH+Ta0QmL._AC_UF1000,1000_QL80_.jpg"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+<tr>
+<td>Bag</td>
+<td>Canteen</td>
+<td>8 March</td>
+<td>9998887776</td>
+<td><img src="https://apkamart.com/cdn/shop/files/Women_Handbag_apkamart_10_bcd748fe-e6d3-4ca0-a97e-2051cf07c38e.jpg?v=1732710680"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+<tr>
+<td>ID</td>
+<td>Canteen</td>
+<td>8 March</td>
+<td>9998887776</td>
+<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQKCQMOpcl5Fy5tPR7BLsRemFa9uDM2WeSYA&s"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+<tr>
+<td>steel bottle</td>
+<td>Canteen</td>
+<td>8 March</td>
+<td>9998887776</td>
+<td><img src="https://femora.in/cdn/shop/files/FMSTLTTR-01_1.jpg?v=1713001295"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+<tr>
+<td>specs</td>
+<td>Canteen</td>
+<td>8 March</td>
+<td>9998887776</td>
+<td><img src="https://rukminim2.flixcart.com/image/480/580/kxjav0w0/frame/r/c/m/52-na-hexagon-oval-shape-specs-store-eyewear-original-imag9z4ddhtyzysg.jpeg?q=90"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+<tr>
+<td>airpods</td>
+<td>Canteen</td>
+<td>8 March</td>
+<td>9998887776</td>
+<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKL9iSZfafRgzO6Up96DB935FBuk2wQ2mewA&s"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+<tr>
+<td>bracelet</td>
+<td>Canteen</td>
+<td>8 March</td>
+<td>9998887776</td>
+<td><img src="https://rukminim2.flixcart.com/image/480/640/xif0q/bangle-bracelet-armlet/d/y/e/free-3-5-na-2-34-styleensbysaakshi-original-imagrep2v2nuejrr.jpeg?q=90"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+<tr>
+<td>purse</td>
+<td>Canteen</td>
+<td>8 March</td>
+<td>9998887776</td>
+<td><img src="https://m.media-amazon.com/images/I/61doHQO0eEL._AC_UY1000_.jpg"></td>
+<td>
+<button class="claim-btn" onclick="claimItem()">Claim</button>
+</td>
+</tr>
+
+</table>
+</center>
+
+<br>
+
+<center>
+<a href="index.html">Back to Home</a>
+</center>
+<script>
+function claimItem(){
+alert("Claim request sent! Please contact the person who found the item.");
+}
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>
